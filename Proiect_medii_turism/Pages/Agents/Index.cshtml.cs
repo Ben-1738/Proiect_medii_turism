@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Proiect_medii_turism.Models;
+using Microsoft.AspNetCore.Authorization;
 
-namespace Proiect_medii_turism.Pages.Clients
+namespace Proiect_medii_turism.Pages.Agents
 {
     [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
@@ -20,11 +20,11 @@ namespace Proiect_medii_turism.Pages.Clients
             _context = context;
         }
 
-        public IList<Client> Client { get;set; } = default!;
+        public IList<Agent> Agent { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Client = await _context.Clients.ToListAsync();
+            Agent = await _context.Agents.ToListAsync();
         }
     }
 }
