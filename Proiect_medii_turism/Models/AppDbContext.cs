@@ -1,0 +1,13 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Proiect_medii_turism.Models
+{
+    public class AppDbContext : DbContext
+    {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
+        public DbSet<TourPackage> TourPackages { get; set; }
+        public DbSet<Client> Clients { get; set; }
+    }
+}
