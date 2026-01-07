@@ -35,7 +35,8 @@
 @foreach (var item in Model.Booking) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Client.Email)
+                @Html.DisplayFor(modelItem => item.Client.LastName)
+                    @Html.DisplayFor(modelItem => item.Client.FirstName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PackageId)

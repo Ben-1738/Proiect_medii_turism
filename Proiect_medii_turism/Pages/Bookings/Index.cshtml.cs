@@ -22,8 +22,12 @@ namespace Proiect_medii_turism.Pages.Bookings
 
         public async Task OnGetAsync()
         {
-            Booking = await _context.Bookings
-                .Include(b => b.Client).ToListAsync();
+            if (_context.Bookings != null) {
+                Booking = await _context.Bookings
+                    .Include(b => b.Client)
+                    .Include(b => b.TourPackage)
+                    .ToListAsync();
+            }
         }
     }
 }
