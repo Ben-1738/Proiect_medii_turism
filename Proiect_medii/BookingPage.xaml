@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_medii.BookingPage"
+             Title="Rezervări">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="12">
+
+            <!-- CLIENT -->
+            <Label Text="Client" />
+            <Picker x:Name="ClientPicker"
+                    Title="Selectează client"
+                    ItemDisplayBinding="{Binding Email}" />
+
+            <!-- PACKAGE -->
+            <Label Text="Pachet turistic" />
+            <Picker x:Name="PackagePicker"
+                    Title="Selectează pachet"
+                    ItemDisplayBinding="{Binding Name}" />
+
+            <!-- PEOPLE -->
+            <Entry x:Name="PeopleEntry"
+                   Placeholder="Număr persoane"
+                   Keyboard="Numeric" />
+
+            <!-- OBS -->
+            <Entry x:Name="ObservationsEntry"
+                   Placeholder="Observații" />
+
+            <!-- BUTTONS -->
+            <Button Text="Adaugă rezervare"
+                    Clicked="OnAddClicked" />
+
+            <Button Text="Modifică rezervare"
+                    Clicked="OnUpdateClicked" />
+
+            <Button Text="Șterge rezervare"
+                    TextColor="Red"
+                    Clicked="OnDeleteClicked" />
+
+            <!-- LIST -->
+            <Label Text="Rezervări existente"
+                   FontAttributes="Bold"
+                   Margin="0,10,0,0" />
+
+            <CollectionView x:Name="BookingsCollection"
+                            SelectionMode="Single"
+                            SelectionChanged="OnSelectionChanged">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="0,5" BorderColor="#CCCCCC">
+                            <VerticalStackLayout Spacing="4">
+
+                                <Label Text="{Binding Client.Email}"
+                                       FontAttributes="Bold" />
+
+                                <Label Text="{Binding TourPackage.Name}" />
+
+                                <Label Text="{Binding NumberOfPeople, StringFormat='Persoane: {0}'}" />
+
+                                <Label Text="{Binding Status}"
+                                       FontSize="12"
+                                       TextColor="Gray" />
+
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

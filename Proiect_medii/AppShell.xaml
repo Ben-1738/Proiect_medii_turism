@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Proiect_medii.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Proiect_medii"
+    Title="Proiect_medii">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <ShellContent
+      Title="Agents"
+      ContentTemplate="{DataTemplate local:AgentPage}"
+      Route="AgentPage" />
+
+    <ShellContent
+      Title="Clients"
+      ContentTemplate="{DataTemplate local:ClientPage}"
+      Route="ClientPage" />
+
+    <ShellContent
+      Title="Touristic Packages"
+      ContentTemplate="{DataTemplate local:TourPackagePage}"
+      Route="TourPackagePage" />
+
+    <ShellContent
+      Title="Bookings"
+      ContentTemplate="{DataTemplate local:BookingPage}"
+      Route="BookingPage" />
+
+</Shell>

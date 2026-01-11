@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Proiect_medii.AgentPage"
+             Title="Agenti">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="10">
+
+            <Entry x:Name="NumeEntry" Placeholder="Nume" />
+            <Entry x:Name="PrenumeEntry" Placeholder="Prenume" />
+            <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="Email" />
+            <Entry x:Name="TelefonEntry" Keyboard="Telephone" Placeholder="Telefon" />
+
+            <Button Text="Adauga" Clicked="OnAddClicked" />
+            <Button Text="Modifica" Clicked="OnUpdateClicked" />
+            <Button Text="Sterge" TextColor="Red" Clicked="OnDeleteClicked" />
+
+            <CollectionView x:Name="AgentsCollection"
+                            SelectionMode="Single"
+                            SelectionChanged="OnSelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10">
+                            <Label Text="{Binding Nume}" FontAttributes="Bold" />
+                            <Label Text="{Binding Prenume}" />
+                            <Label Text="{Binding Email}" FontSize="12" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

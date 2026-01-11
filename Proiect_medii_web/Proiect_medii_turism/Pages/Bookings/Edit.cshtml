@@ -1,0 +1,68 @@
+﻿@page
+@model Proiect_medii_turism.Pages.Bookings.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Booking</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Booking.BookingId" />
+            <div class="form-group">
+<span class="text-danger">*</span>
+                <label asp-for="Booking.ClientId" class="control-label"></label>
+                <select asp-for="Booking.ClientId" class="form-control" asp-items="ViewBag.ClientId" aria-required="true"></select>
+                <span asp-validation-for="Booking.ClientId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+<span class="text-danger">*</span>
+                <label asp-for="Booking.PackageId" class="control-label"></label>
+                <input asp-for="Booking.PackageId" class="form-control" aria-required="true"/>
+                <span asp-validation-for="Booking.PackageId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Booking.RezervationDate" class="control-label"></label>
+                <input asp-for="Booking.RezervationDate" class="form-control" />
+                <span asp-validation-for="Booking.RezervationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Booking.NumberOfPeople" class="control-label"></label>
+                <input asp-for="Booking.NumberOfPeople" class="form-control" />
+                <span asp-validation-for="Booking.NumberOfPeople" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Booking.Status" class="control-label"></label>
+                <input asp-for="Booking.Status" class="form-control" />
+                <option value="P    ending">Pending</option>
+                <option value="Confirmed">Confirmed ✅</option>
+                <option value="Cancelled">Cancelled ❌</option>
+                <option value="Finalized">Finalized 🏁</option>
+                </select>
+                <span asp-validation-for="Booking.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Booking.Observations" class="control-label fw-bold">Observations (after visit)</label>
+                <textarea asp-for="Booking.Observations" class="form-control" rows="3" placeholder="Client or trip observations..."></textarea>
+                <span asp-validation-for="Booking.Observations" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-page="./Index" class="btn btn-secondary">Back to list.</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
