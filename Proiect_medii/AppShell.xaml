@@ -7,11 +7,6 @@
     Title="Proiect_medii">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
-    <ShellContent
       Title="Agents"
       ContentTemplate="{DataTemplate local:AgentPage}"
       Route="AgentPage" />
