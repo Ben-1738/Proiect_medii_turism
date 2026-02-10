@@ -14,8 +14,11 @@ namespace Proiect_medii_turism.Models
         public DbSet<Agent> Agents { get; set; }
 <<<<<<< Updated upstream:Proiect_medii_turism/Models/AppDbContext.cs
 <<<<<<< Updated upstream:Proiect_medii_turism/Models/AppDbContext.cs
+<<<<<<< Updated upstream:Proiect_medii_turism/Models/AppDbContext.cs
 =======
 >>>>>>> parent of 16978ae (In mare parte e gata, de infrumusetaree mai are nevoie.)
+=======
+>>>>>>> Stashed changes:Proiect_medii_web/Proiect_medii_turism/Models/AppDbContext.cs
 =======
 >>>>>>> Stashed changes:Proiect_medii_web/Proiect_medii_turism/Models/AppDbContext.cs
 =======
