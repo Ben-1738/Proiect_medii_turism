@@ -24,7 +24,10 @@ namespace Proiect_medii_turism.Pages.Clients
 
         public async Task OnGetAsync()
         {
-            Client = await _context.Clients.ToListAsync();
+            if (_context.Clients != null)
+            {
+                Client = await _context.Clients.ToListAsync();
+            }
         }
     }
 }

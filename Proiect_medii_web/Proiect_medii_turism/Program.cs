@@ -18,10 +18,16 @@ builder.Services.AddDbContext<TourismIdentityContext>(options =>
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => 
     options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<TourismIdentityContext>();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await SeedData.Initialize(services);
+}
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");

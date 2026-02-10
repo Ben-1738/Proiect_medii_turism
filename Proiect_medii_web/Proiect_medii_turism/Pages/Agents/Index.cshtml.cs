@@ -24,7 +24,10 @@ namespace Proiect_medii_turism.Pages.Agents
 
         public async Task OnGetAsync()
         {
-            Agent = await _context.Agents.ToListAsync();
+            if (_context.Agents != null)
+            {
+                Agent = await _context.Agents.ToListAsync();
+            }
         }
     }
 }

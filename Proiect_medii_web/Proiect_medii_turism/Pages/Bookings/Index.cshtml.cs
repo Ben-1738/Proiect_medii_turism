@@ -11,7 +11,7 @@ using Proiect_medii_turism.Models;
 
 namespace Proiect_medii_turism.Pages.Bookings
 {
-    [Authorize(Roles = "Admin, Users")]
+    [Authorize(Roles = "Admin, Clients")]
     public class IndexModel : PageModel
     {
         private readonly Proiect_medii_turism.Models.AppDbContext _context;
