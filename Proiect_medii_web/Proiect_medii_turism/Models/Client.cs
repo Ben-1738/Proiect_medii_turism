@@ -12,5 +12,8 @@ namespace Proiect_medii_turism.Models
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        public string ? FullName => $"{FirstName} {LastName}";
+        public ICollection<Booking> Bookings { get; set; }
     }
 }

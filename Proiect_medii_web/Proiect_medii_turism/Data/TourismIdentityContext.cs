@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Proiect_medii_turism.Data
 {
-    public class LibraryIdentityContext : IdentityDbContext
+    public class TourismIdentityContext : IdentityDbContext
     {
-        public LibraryIdentityContext(DbContextOptions<LibraryIdentityContext> options)
+        public TourismIdentityContext(DbContextOptions<TourismIdentityContext> options)
             : base(options) { }
     }
 }

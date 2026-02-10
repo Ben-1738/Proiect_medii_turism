@@ -10,7 +10,7 @@ using Proiect_medii_turism.Data;
 
 namespace Proiect_medii_turism.Migrations.LibraryIdentity
 {
-    [DbContext(typeof(LibraryIdentityContext))]
+    [DbContext(typeof(TourismIdentityContext))]
     partial class LibraryIdentityContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

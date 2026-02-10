@@ -11,7 +11,7 @@ using Proiect_medii_turism.Data;
 
 namespace Proiect_medii_turism.Migrations.LibraryIdentity
 {
-    [DbContext(typeof(LibraryIdentityContext))]
+    [DbContext(typeof(TourismIdentityContext))]
     [Migration("20260210121451_CreateIdentity")]
     partial class CreateIdentity
     {
