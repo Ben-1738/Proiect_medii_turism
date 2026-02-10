@@ -2,7 +2,7 @@
 namespace Proiect_medii_turism.Models
 
 {
-    public class TourPackage : IValidatableObject
+    public class TourPackage
     {
         [Key]
         public int PackageId { get; set; }
@@ -10,12 +10,13 @@ namespace Proiect_medii_turism.Models
         public string Name { get; set; }
         [Required]
         public string Destination { get; set; }
-        [Range(1, 1000000)]
+        [Range(1,1000000)]
         public decimal Price { get; set; }
         [DataType(DataType.Date)]
         public DateTime LeavingDate { get; set; }
         [DataType(DataType.Date)]
         public DateTime ReturnDate { get; set; }
+<<<<<<< HEAD
 
         public ICollection<Booking>? Bookings { get; set; }
 
@@ -37,5 +38,7 @@ namespace Proiect_medii_turism.Models
                     new[] { nameof(LeavingDate) });
             }
         }
+=======
+>>>>>>> parent of 16978ae (In mare parte e gata, de infrumusetaree mai are nevoie.)
     }
 }

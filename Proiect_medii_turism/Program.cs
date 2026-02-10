@@ -1,6 +1,7 @@
 <<<<<<< Updated upstream:Proiect_medii_turism/Program.cs
 using Proiect_medii_turism.Models;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Authentication.Cookies;
 =======
 ﻿using Proiect_medii_turism.Models;
@@ -9,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 
 >>>>>>> Stashed changes:Proiect_medii_web/Proiect_medii_turism/Program.cs
+=======
+>>>>>>> parent of 16978ae (In mare parte e gata, de infrumusetaree mai are nevoie.)
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -18,6 +21,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream:Proiect_medii_turism/Program.cs
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -32,6 +36,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<LibraryIdentityContext>();
 >>>>>>> Stashed changes:Proiect_medii_web/Proiect_medii_turism/Program.cs
 
+=======
+>>>>>>> parent of 16978ae (In mare parte e gata, de infrumusetaree mai are nevoie.)
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -47,7 +53,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

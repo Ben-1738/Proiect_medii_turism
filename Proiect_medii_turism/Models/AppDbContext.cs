@@ -10,6 +10,9 @@ namespace Proiect_medii_turism.Models
         public DbSet<TourPackage> TourPackages { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+<<<<<<< HEAD
         public DbSet<Agent> Agents { get; set; }
+=======
+>>>>>>> parent of 16978ae (In mare parte e gata, de infrumusetaree mai are nevoie.)
     }
 }
