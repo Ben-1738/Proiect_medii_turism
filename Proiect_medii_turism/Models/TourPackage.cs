@@ -20,6 +20,8 @@ namespace Proiect_medii_turism.Models
 
         public ICollection<Booking>? Bookings { get; set; }
 
+        public ICollection<Booking>? Bookings { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             // Verificăm dacă data de întoarcere este înaintea plecării
