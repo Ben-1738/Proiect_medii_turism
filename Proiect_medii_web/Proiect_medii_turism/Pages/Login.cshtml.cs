@@ -1,29 +1,19 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
+using Proiect_medii_turism.Models;
+using System.Security.Claims;
 
 namespace Proiect_medii_turism.Pages
 {
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly AppDbContext _context;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager)
+        public LoginModel(AppDbContext context)
         {
-            _signInManager = signInManager;
-        }
-        [BindProperty]
-        public InputModel Input { get; set; }
-
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
-            [Required]
-            [DataType(DataType.Password)]
-            public string Password { get; set; }
+            _context = context;
         }
 
         public void OnGet()
@@ -32,15 +22,27 @@ namespace Proiect_medii_turism.Pages
 
         public async Task<IActionResult> OnPostAsync(string username, string password)
         {
-            if(!ModelState.IsValid) return Page();
+            var user = _context.Users.FirstOrDefault(u => u.Username == username && u.PasswordHash == password);
 
-            var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, isPersistent:false, lockoutOnFailure: false);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Incorrect username or password!");
+                return Page();
+            }
 
-            if (result.Succeeded)
-                return RedirectToPage("/Index");
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, user.Role) // Aici setăm Admin sau Agent
+            };
 
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-            return Page();
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            // 3. Logăm utilizatorul (se creează cookie-ul)
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+            return RedirectToPage("/Index");
         }
     }
     }
