@@ -67,9 +67,6 @@ namespace Proiect_medii_turism.Migrations
                     b.Property<int>("NumberOfPeople")
                         .HasColumnType("int");
 
-                    b.Property<string>("Observations")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("PackageId")
                         .HasColumnType("int");
 

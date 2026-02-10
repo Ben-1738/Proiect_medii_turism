@@ -4,42 +4,7 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center mb-5">
-    <h1 class="display-4">Welcome to the travel agency. ✈️</h1>
-    <p class="lead">Administrative sistem.</p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <div class="card text-white bg-info mb-3 shadow">
-            <div class="card-header">📦 Active offers</div>
-            <div class="card-body">
-                <h2 class="card-title">@Model.TotalPackages</h2>
-                <p class="card-text">Available tourist packages.</p>
-                <a asp-page="/Packages/Index" class="btn btn-light btn-sm">See offers</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card text-white bg-success mb-3 shadow">
-            <div class="card-header">👥 Registered clients</div>
-            <div class="card-body">
-                <h2 class="card-title">@Model.TotalClients</h2>
-                <p class="card-text">Clients using our services.</p>
-                <a asp-page="/Clients/Index" class="btn btn-light btn-sm">See clients</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card text-white bg-warning mb-3 shadow">
-            <div class="card-header">📅 New bookings</div>
-            <div class="card-body">
-                <h2 class="card-title">@Model.NewBookings</h2>
-                <p class="card-text">Bookings that require confirmation.</p>
-                <a asp-page="/Bookings/Index" class="btn btn-light btn-sm">Manage</a>
-            </div>
-        </div>
-    </div>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

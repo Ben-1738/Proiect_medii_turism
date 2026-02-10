@@ -16,7 +16,5 @@ namespace Proiect_medii_turism.Models
         [Range(1,20)]
         public int NumberOfPeople { get; set; }
         public string Status { get; set; } // e.g., "Confirmed", "Cancelled", "Pending"
-
-        public string? Observations { get; set; }
     }
 }

@@ -39,21 +39,10 @@
             <div class="form-group">
                 <label asp-for="Booking.Status" class="control-label"></label>
                 <input asp-for="Booking.Status" class="form-control" />
-                <option value="P    ending">Pending</option>
-                <option value="Confirmed">Confirmed ✅</option>
-                <option value="Cancelled">Cancelled ❌</option>
-                <option value="Finalized">Finalized 🏁</option>
-                </select>
                 <span asp-validation-for="Booking.Status" class="text-danger"></span>
-            </div>
-            <div class="form-group mb-3">
-                <label asp-for="Booking.Observations" class="control-label fw-bold">Observations (after visit)</label>
-                <textarea asp-for="Booking.Observations" class="form-control" rows="3" placeholder="Client or trip observations..."></textarea>
-                <span asp-validation-for="Booking.Observations" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
-                <a asp-page="./Index" class="btn btn-secondary">Back to list.</a>
             </div>
         </form>
     </div>
