@@ -23,17 +23,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Packages/Index">Touristic Packages</a>
+                        </li>
 
                         @if (User.Identity?.IsAuthenticated == true)
                         {
-                            <!-- Touristic Packages - visible to both Admin and Client -->
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Packages/Index">Touristic Packages</a>
-                            </li>
-
+                   
                             @if (User.IsInRole("Admin"))
                             {
-                                <!-- Admin-only menu items -->
+                                <!-- Admin-only -->
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Clients/Index">Clients</a>
                                 </li>
@@ -47,13 +46,12 @@
 
                             @if (User.IsInRole("Client"))
                             {
-                                <!-- Client-only menu items -->
+                                <!-- Client-only -->
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/MyBookings">My Bookings</a>
                                 </li>
                             }
 
-                            <!-- Privacy - visible to all authenticated users -->
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                             </li>
