@@ -12,5 +12,13 @@ namespace Proiect_medii_turism.Models
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        [Display(Name = "Full name")]
+        public string? FullName
+        {
+            get {return FirstName + " " + LastName; }
+        }
+
+        public ICollection<Booking>? Bookings { get; set; }
     }
 }

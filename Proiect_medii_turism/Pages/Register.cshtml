@@ -1,7 +1,7 @@
 ﻿@page
 @model Proiect_medii_turism.Pages.RegisterModel
 @{
-    ViewData["Title"] = "New account.";
+    ViewData["Title"] = "Register";
 }
 
 <div class="container mt-5">
@@ -9,40 +9,26 @@
         <div class="col-md-6">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white">
-                    <h3 class="card-title mb-0">📝 New user</h3>
+                    <h3 class="card-title mb-0">📝 New account</h3>
                 </div>
                 <div class="card-body">
                     <form method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
                         <div class="form-group mb-3">
-                            <label asp-for="Input.Username" class="control-label fw-bold"></label>
-                            <input asp-for="Input.Username" class="form-control" placeholder="Insert username" />
-                            <span asp-validation-for="Input.Username" class="text-danger"></span>
+                            <label asp-for="Input.Email" class="control-label fw-bold"></label>
+                            <input asp-for="Input.Email" class="form-control" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
                         </div>
-
                         <div class="form-group mb-3">
                             <label asp-for="Input.Password" class="control-label fw-bold"></label>
-                            <input asp-for="Input.Password" class="form-control" placeholder="Insert password" />
+                            <input asp-for="Input.Password" class="form-control" />
                             <span asp-validation-for="Input.Password" class="text-danger"></span>
                         </div>
-
                         <div class="form-group mb-3">
                             <label asp-for="Input.ConfirmPassword" class="control-label fw-bold"></label>
-                            <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Repeat password" />
+                            <input asp-for="Input.ConfirmPassword" class="form-control" />
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
-
-                        <div class="form-group mb-3">
-                            <label asp-for="Input.Role" class="control-label fw-bold"></label>
-                            <select asp-for="Input.Role" class="form-select">
-                                <option value="">-- Alege Rolul --</option>
-                                <option value="Agent">Turism agent</option>
-                                <option value="Admin">Administrator</option>
-                            </select>
-                            <span asp-validation-for="Input.Role" class="text-danger"></span>
-                        </div>
-
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-success btn-lg">Create Account</button>
                             <a asp-page="/Login" class="btn btn-outline-secondary">Back to Login</a>
@@ -55,5 +41,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

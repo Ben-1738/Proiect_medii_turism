@@ -21,6 +21,12 @@ namespace Proiect_medii_turism.Pages.Bookings
         public IActionResult OnGet()
         {
         ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "Email");
+            var packageList = _context.TourPackages.Select(x => new
+            {
+                x.PackageId,
+                PackageFullName = x.Name + " - " + x.Destination
+            });
+            ViewData["PackageId"] = new SelectList(packageList, "PackageId", "PackageFullName");
             return Page();
         }
 

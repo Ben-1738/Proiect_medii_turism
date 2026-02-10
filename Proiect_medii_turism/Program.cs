@@ -1,6 +1,14 @@
+<<<<<<< Updated upstream:Proiect_medii_turism/Program.cs
 using Proiect_medii_turism.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+=======
+﻿using Proiect_medii_turism.Models;
+using Proiect_medii_turism.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
+>>>>>>> Stashed changes:Proiect_medii_web/Proiect_medii_turism/Program.cs
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -10,12 +18,19 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+<<<<<<< Updated upstream:Proiect_medii_turism/Program.cs
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
         options.LoginPath = "/Login"; // Daca nu esti logat te redirectioneaza aici
         options.AccessDeniedPath = "/AccessDenied"; // Daca incerci sa accesezi o resursa fara permisiuni
     });
+=======
+
+builder.Services.AddDbContext<LibraryIdentityContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<LibraryIdentityContext>();
+>>>>>>> Stashed changes:Proiect_medii_web/Proiect_medii_turism/Program.cs
 
 var app = builder.Build();
 

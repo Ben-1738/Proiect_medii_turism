@@ -11,6 +11,5 @@ namespace Proiect_medii_turism.Models
         public DbSet<Client> Clients { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Agent> Agents { get; set; }
-        public DbSet<User> Users { get; set; }
     }
 }

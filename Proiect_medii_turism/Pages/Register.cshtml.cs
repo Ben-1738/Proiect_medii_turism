@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Proiect_medii_turism.Models;
@@ -7,10 +8,17 @@ namespace Proiect_medii_turism.Pages
 {
     public class RegisterModel : PageModel
     {
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly AppDbContext _context;
 
-        public RegisterModel(AppDbContext context)
+        public RegisterModel(
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
+            AppDbContext context)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
             _context = context;
         }
 
@@ -19,56 +27,51 @@ namespace Proiect_medii_turism.Pages
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Username is mandatory.")]
-            [Display(Name = "Username")]
-            public string Username { get; set; }
+            [Required]
+            [EmailAddress]
+            [Display(Name = "Email")]
+            public string Email { get; set; }
 
-            [Required(ErrorMessage = "Password is mandatory")]
+            [Required]
             [DataType(DataType.Password)]
-            [StringLength(100, MinimumLength = 4, ErrorMessage = "Password must be atleast 4 caracters.")]
+            [StringLength(100, MinimumLength = 6)]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "Password don't match!")]
+            [Compare("Password")]
             public string ConfirmPassword { get; set; }
-
-            [Required]
-            [Display(Name = "Role")]
-            public string Role { get; set; } 
         }
 
-        public void OnGet()
-        {
-        }
+        public void OnGet() { }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) return Page();
+
+            var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+            var result = await _userManager.CreateAsync(user, Input.Password);
+
+            if (result.Succeeded)
             {
-                return Page();
+                // Auto-creare Client cu emailul (pct. 19 din lab)
+                var client = new Client
+                {
+                    Email = Input.Email,
+                    FirstName = "",
+                    LastName = ""
+                };
+                _context.Clients.Add(client);
+                await _context.SaveChangesAsync();
+
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return RedirectToPage("/Index");
             }
 
-            var existingUser = _context.Users.FirstOrDefault(u => u.Username == Input.Username);
-            if (existingUser != null)
-            {
-                ModelState.AddModelError(string.Empty, "This username already exists.");
-                return Page();
-            }
+            foreach (var error in result.Errors)
+                ModelState.AddModelError(string.Empty, error.Description);
 
-
-            var user = new User
-            {
-                Username = Input.Username,
-                PasswordHash = Input.Password,
-                Role = Input.Role
-            };
-
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-
-            return RedirectToPage("/Login");
+            return Page();
         }
     }
 }

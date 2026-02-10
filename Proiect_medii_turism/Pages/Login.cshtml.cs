@@ -1,19 +1,29 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Proiect_medii_turism.Models;
-using System.Security.Claims;
+using System.ComponentModel.DataAnnotations;
 
 namespace Proiect_medii_turism.Pages
 {
     public class LoginModel : PageModel
     {
-        private readonly AppDbContext _context;
+        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public LoginModel(AppDbContext context)
+        public LoginModel(SignInManager<IdentityUser> signInManager)
         {
-            _context = context;
+            _signInManager = signInManager;
+        }
+        [BindProperty]
+        public InputModel Input { get; set; }
+
+        public class InputModel
+        {
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
+            [Required]
+            [DataType(DataType.Password)]
+            public string Password { get; set; }
         }
 
         public void OnGet()
@@ -22,27 +32,15 @@ namespace Proiect_medii_turism.Pages
 
         public async Task<IActionResult> OnPostAsync(string username, string password)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Username == username && u.PasswordHash == password);
+            if(!ModelState.IsValid) return Page();
 
-            if (user == null)
-            {
-                ModelState.AddModelError(string.Empty, "Incorrect username or password!");
-                return Page();
-            }
+            var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, isPersistent:false, lockoutOnFailure: false);
 
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.Role) // Aici setăm Admin sau Agent
-            };
+            if (result.Succeeded)
+                return RedirectToPage("/Index");
 
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
-
-            // 3. Logăm utilizatorul (se creează cookie-ul)
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-            return RedirectToPage("/Index");
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            return Page();
         }
     }
     }

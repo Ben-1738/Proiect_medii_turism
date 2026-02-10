@@ -17,7 +17,7 @@
                 @Html.DisplayNameFor(model => model.Booking[0].Client)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Booking[0].PackageId)
+                @Html.DisplayNameFor(model => model.Booking[0].TourPackage)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Booking[0].RezervationDate)
@@ -39,7 +39,7 @@
                     @Html.DisplayFor(modelItem => item.Client.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PackageId)
+                    @Html.DisplayFor(modelItem => item.TourPackage.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RezervationDate)
