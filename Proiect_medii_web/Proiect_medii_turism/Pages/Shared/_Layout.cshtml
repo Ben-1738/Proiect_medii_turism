@@ -42,6 +42,12 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/Index">All Bookings</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Payments/Index">Payments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Reviews/Index">Reviews</a>
+                                </li>
                             }
 
                             @if (User.IsInRole("Client"))
@@ -49,6 +55,9 @@
                                 <!-- Client-only -->
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Bookings/MyBookings">My Bookings</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Reviews/Index">My Reviews</a>
                                 </li>
                             }
 

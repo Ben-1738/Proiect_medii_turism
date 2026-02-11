@@ -15,8 +15,13 @@ namespace Proiect_medii_turism.Models
         public DateTime RezervationDate { get; set; }
         [Range(1,20)]
         public int NumberOfPeople { get; set; }
-        public string Status { get; set; } // e.g., "Confirmed", "Cancelled", "Pending"
+        public string Status { get; set; }
+        
 
         public string? Observations { get; set; }
+
+        public int? AgentId { get; set; }
+        public Agent? Agent { get; set; }
+        public Payment? Payment { get; set; }
     }
 }

@@ -18,6 +18,10 @@ namespace Proiect_medii_turism.Models
         public DateTime ReturnDate { get; set; }
 
         public ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();
+        public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();   
+
+        public int? AgentId { get; set; }
+        public Agent? Agent { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

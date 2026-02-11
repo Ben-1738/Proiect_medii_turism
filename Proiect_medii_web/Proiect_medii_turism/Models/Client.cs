@@ -15,5 +15,6 @@ namespace Proiect_medii_turism.Models
 
         public string ? FullName => $"{FirstName} {LastName}";
         public ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();
+        public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
     }
 }

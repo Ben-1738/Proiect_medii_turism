@@ -22,5 +22,9 @@ namespace Proiect_medii_turism.Models
         [Phone]
         [Display(Name = "Phone")]
         public string? Telefon { get; set; }
+
+        public ICollection<TourPackage> TourPackages { get; set; } = new HashSet<TourPackage>();
+        public ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();
+
     }
 }
