@@ -7,8 +7,6 @@ namespace Proiect_medii_turism.Models
         [Key]
         public int AgentId { get; set; }
 
-        public int? UserId { get; set; }
-
         [Required]
         [Display(Name = "Last Name")]
         public string Nume { get; set; }
