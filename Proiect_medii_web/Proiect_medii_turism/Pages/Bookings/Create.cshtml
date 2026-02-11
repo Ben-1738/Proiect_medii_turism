@@ -21,7 +21,7 @@
             <div class="form-group">
                 <span class="text-danger">*</span>
                 <label asp-for="Booking.PackageId" class="control-label"></label>
-                <input asp-for="Booking.PackageId" class="form-control" aria-required="true"/>
+                <select asp-for="Booking.PackageId" class="form-control" asp-items="ViewBag.PackageId" aria-required="true"></select>
                 <span asp-validation-for="Booking.PackageId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -36,7 +36,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Booking.Status" class="control-label"></label>
-                <input asp-for="Booking.Status" class="form-control" />
+                <select asp-for="Booking.Status" class="form-control">
+                    <option value="">-- Select Status --</option>
+                    <option value="pending">Pending</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="finalized">Finalized</option>
+                </select>
                 <span asp-validation-for="Booking.Status" class="text-danger"></span>
             </div>
             <div class="form-group">

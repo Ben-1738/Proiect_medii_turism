@@ -20,7 +20,8 @@ namespace Proiect_medii_turism.Pages.Bookings
 
         public IActionResult OnGet()
         {
-        ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "Email");
+            ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "Email");
+            ViewData["PackageId"] = new SelectList(_context.TourPackages, "PackageId", "Name");
             return Page();
         }
 
@@ -32,6 +33,8 @@ namespace Proiect_medii_turism.Pages.Bookings
         {
             if (!ModelState.IsValid)
             {
+                ViewData["ClientId"] = new SelectList(_context.Clients, "ClientId", "Email");
+                ViewData["PackageId"] = new SelectList(_context.TourPackages, "PackageId", "Name");
                 return Page();
             }
 
