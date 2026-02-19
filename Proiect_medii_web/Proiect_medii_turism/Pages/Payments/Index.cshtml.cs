@@ -23,7 +23,11 @@ namespace Proiect_medii_turism.Pages.Payments
         public async Task OnGetAsync()
         {
             Payment = await _context.Payments
-                .Include(p => p.Booking).ToListAsync();
+                .Include(p => p.Booking)
+                    .ThenInclude(b => b.Client)
+                .Include(p => p.Booking)
+                    .ThenInclude(b => b.TourPackage)
+                .ToListAsync();
         }
     }
 }

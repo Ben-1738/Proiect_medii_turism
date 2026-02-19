@@ -31,6 +31,19 @@ namespace Proiect_medii_turism.Pages.Payments
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            if (Payment.Amount == 0 && Payment.BookingId > 0)
+            {
+                var booking = await _context.Bookings
+                    .Include(b => b.TourPackage)
+                    .FirstOrDefaultAsync(b => b.BookingId == Payment.BookingId);
+
+                if (booking?.TourPackage != null)
+                {
+                    Payment.Amount = booking.TourPackage.Price * booking.NumberOfPeople;
+                }
+            }
+            ModelState.Remove("Payment.Amount");
+
             if (!ModelState.IsValid)
             {
                 LoadBookingsDropdown();
@@ -45,19 +58,24 @@ namespace Proiect_medii_turism.Pages.Payments
 
         private void LoadBookingsDropdown()
         {
-            var bookingsData = _context.Bookings
+            var bookings = _context.Bookings
                 .Include(b => b.Client)
                 .Include(b => b.TourPackage)
                 .AsNoTracking()
-                .ToList();
-
-            var bookings = bookingsData
-                .Where(b => b.Client != null && b.TourPackage != null)
                 .Select(b => new
                 {
                     b.BookingId,
-                    DisplayText = $"{b.Client!.Email} - {b.TourPackage!.Name} ({b.NumberOfPeople} people)",
-                    Amount = b.TourPackage.Price * b.NumberOfPeople
+                    ClientEmail = b.Client != null ? b.Client.Email : "Unknown Client",
+                    PackageName = b.TourPackage != null ? b.TourPackage.Name : "Unknown Package",
+                    b.NumberOfPeople,
+                    Price = b.TourPackage != null ? b.TourPackage.Price : 0m
+                })
+                .ToList()
+                .Select(b => new
+                {
+                    b.BookingId,
+                    DisplayText = $"{b.ClientEmail} - {b.PackageName} ({b.NumberOfPeople} people)",
+                    Amount = b.Price * b.NumberOfPeople
                 })
                 .ToList();
 

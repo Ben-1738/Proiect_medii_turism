@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                Client
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Payment[0].Booking)
             </th>
             <th>
@@ -35,7 +38,10 @@
 @foreach (var item in Model.Payment) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Booking.BookingId)
+                @(item.Booking?.Client?.FullName ?? "-")
+            </td>
+            <td>
+                @(item.Booking?.TourPackage?.Name ?? "-")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)

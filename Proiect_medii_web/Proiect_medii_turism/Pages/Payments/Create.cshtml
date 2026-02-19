@@ -3,7 +3,6 @@
 
 @{
     ViewData["Title"] = "Create";
-    var bookingAmounts = ViewData["BookingAmounts"] as Dictionary<int, decimal>;
 }
 
 <h1>Create</h1>
@@ -22,7 +21,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Payment.Amount" class="control-label"></label>
-                <input asp-for="Payment.Amount" class="form-control" id="amountInput" readonly />
+                <input asp-for="Payment.Amount" class="form-control" id="amountInput" />
+                <small class="text-muted">Amount is automatically calculated from the selected booking.</small>
                 <span asp-validation-for="Payment.Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -62,14 +62,14 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
-        var bookingAmounts = @Html.Raw(Json.Serialize(bookingAmounts));
-        
-        document.getElementById('bookingSelect').addEventListener('change', function() {
-            var bookingId = parseInt(this.value);
+        var bookingAmounts = @Html.Raw(Json.Serialize(ViewData["BookingAmounts"] ?? new Dictionary<int, decimal>()));
+
+        document.getElementById('bookingSelect').addEventListener('change', function () {
+            var bookingId = this.value;
             var amountInput = document.getElementById('amountInput');
-            
-            if (bookingId && bookingAmounts[bookingId]) {
-                amountInput.value = bookingAmounts[bookingId].toFixed(2);
+
+            if (bookingId && bookingAmounts[bookingId] !== undefined) {
+                amountInput.value = parseFloat(bookingAmounts[bookingId]).toFixed(2);
             } else {
                 amountInput.value = '';
             }

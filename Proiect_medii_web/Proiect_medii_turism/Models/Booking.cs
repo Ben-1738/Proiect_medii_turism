@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace Proiect_medii_turism.Models
 {
     public class Booking
@@ -7,9 +8,11 @@ namespace Proiect_medii_turism.Models
         public int BookingId { get; set; }
         [Required]
         public int ClientId { get; set; }
+        [ForeignKey("ClientId")]
         public Client? Client { get; set; }
         [Required]
         public int PackageId { get; set; }
+        [ForeignKey("PackageId")]
         public TourPackage? TourPackage { get; set; }
         [DataType(DataType.Date)]
         public DateTime RezervationDate { get; set; }
